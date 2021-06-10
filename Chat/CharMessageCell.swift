@@ -39,6 +39,7 @@ class CharMessageCell: UITableViewCell {
     bubbleBackgroundView.backgroundColor = .yellow
     bubbleBackgroundView.translatesAutoresizingMaskIntoConstraints = false
     bubbleBackgroundView.layer.cornerRadius = 12
+    
     addSubview(bubbleBackgroundView)
 
     addSubview(messageLabel)
@@ -49,7 +50,7 @@ class CharMessageCell: UITableViewCell {
       messageLabel.topAnchor.constraint(equalTo: topAnchor, constant: 32),
 
       messageLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -32),
-      messageLabel.widthAnchor.constraint(lessThanOrEqualToConstant: 250),
+      messageLabel.widthAnchor.constraint(lessThanOrEqualTo: widthAnchor, multiplier: 3/5),
 
       bubbleBackgroundView.topAnchor.constraint(equalTo: messageLabel.topAnchor, constant: -16),
       bubbleBackgroundView.leadingAnchor.constraint(equalTo: messageLabel.leadingAnchor, constant: -16),
