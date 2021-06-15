@@ -13,6 +13,8 @@
 		A25D836D26735EA9005BCB29 /* DateLabelHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = A25D836C26735EA9005BCB29 /* DateLabelHeader.swift */; };
 		A25D836F2673623B005BCB29 /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A25D836E2673623B005BCB29 /* Date+Extension.swift */; };
 		A25D837126736250005BCB29 /* DateFormmater+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A25D837026736250005BCB29 /* DateFormmater+Extension.swift */; };
+		A2EA5BD0267893780067AAF9 /* InputMessageBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2EA5BCF267893780067AAF9 /* InputMessageBar.swift */; };
+		A2EA5BD2267893CE0067AAF9 /* MessageTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2EA5BD1267893CE0067AAF9 /* MessageTextView.swift */; };
 		A2ED8B4326721A2A00BDBB5A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2ED8B4226721A2A00BDBB5A /* AppDelegate.swift */; };
 		A2ED8B4726721A2A00BDBB5A /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2ED8B4626721A2A00BDBB5A /* ChatViewController.swift */; };
 		A2ED8B4A26721A2A00BDBB5A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A2ED8B4826721A2A00BDBB5A /* Main.storyboard */; };
@@ -28,6 +30,8 @@
 		A25D836C26735EA9005BCB29 /* DateLabelHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateLabelHeader.swift; sourceTree = "<group>"; };
 		A25D836E2673623B005BCB29 /* Date+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extension.swift"; sourceTree = "<group>"; };
 		A25D837026736250005BCB29 /* DateFormmater+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DateFormmater+Extension.swift"; sourceTree = "<group>"; };
+		A2EA5BCF267893780067AAF9 /* InputMessageBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputMessageBar.swift; sourceTree = "<group>"; };
+		A2EA5BD1267893CE0067AAF9 /* MessageTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageTextView.swift; sourceTree = "<group>"; };
 		A2ED8B3F26721A2A00BDBB5A /* Chat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Chat.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A2ED8B4226721A2A00BDBB5A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A2ED8B4626721A2A00BDBB5A /* ChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
@@ -72,6 +76,8 @@
 				A2ED8B4626721A2A00BDBB5A /* ChatViewController.swift */,
 				A2ED8B5626721DBE00BDBB5A /* CharMessageCell.swift */,
 				A25D836C26735EA9005BCB29 /* DateLabelHeader.swift */,
+				A2EA5BCF267893780067AAF9 /* InputMessageBar.swift */,
+				A2EA5BD1267893CE0067AAF9 /* MessageTextView.swift */,
 			);
 			path = Chat;
 			sourceTree = "<group>";
@@ -181,12 +187,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				A2ED8B4726721A2A00BDBB5A /* ChatViewController.swift in Sources */,
+				A2EA5BD2267893CE0067AAF9 /* MessageTextView.swift in Sources */,
 				A2ED8B5726721DBE00BDBB5A /* CharMessageCell.swift in Sources */,
 				A2ED8B4326721A2A00BDBB5A /* AppDelegate.swift in Sources */,
 				A25D837126736250005BCB29 /* DateFormmater+Extension.swift in Sources */,
 				A25D836D26735EA9005BCB29 /* DateLabelHeader.swift in Sources */,
 				A25D836F2673623B005BCB29 /* Date+Extension.swift in Sources */,
 				A25D836B26735E7E005BCB29 /* ChatMessage.swift in Sources */,
+				A2EA5BD0267893780067AAF9 /* InputMessageBar.swift in Sources */,
 				A25D836926735E5C005BCB29 /* Data.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
