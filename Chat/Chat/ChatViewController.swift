@@ -15,6 +15,8 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
   private let tableView = UITableView()
   private let messageView = UIView()
 
+  private let messageTextView = CustomTextView()
+
   override func loadView() {
     super.loadView()
 
@@ -28,9 +30,12 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
     navigationItem.title = "Сообщения"
     navigationController?.navigationBar.prefersLargeTitles = true
 
+    view.backgroundColor = .systemGray5
+
     tableView.register(ChatMessageCell.self, forCellReuseIdentifier: ChatMessageCell.cellId)
     tableView.separatorStyle = .none
-    tableView.backgroundColor = .systemGray5
+    tableView.backgroundColor = .clear
+    tableView.layer.cornerRadius = 20
     tableView.allowsSelection = false
 
     tableView.delegate = self
@@ -79,26 +84,128 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
     tableView.translatesAutoresizingMaskIntoConstraints = false
 
     messageView.translatesAutoresizingMaskIntoConstraints = false
-    messageView.backgroundColor = .systemBlue
+    messageView.backgroundColor = .systemOrange
+    messageView.layer.cornerRadius = 10
+    messageView.layer.shadowColor = UIColor.black.cgColor
+    messageView.layer.shadowOpacity = 0.3
+    messageView.layer.shadowOffset = .zero
+    messageView.layer.shadowRadius = 10
 
 
     view.addSubview(tableView)
     view.addSubview(messageView)
 
+    let sendButton = UIButton(type: .system)
+    sendButton.translatesAutoresizingMaskIntoConstraints = false
+    sendButton.setImage(UIImage(systemName: "paperplane"), for: .normal)
+    sendButton.tintColor = .white
+    sendButton.widthAnchor.constraint(equalToConstant: 35).isActive = true
+    sendButton.heightAnchor.constraint(equalToConstant: 35).isActive = true
+
+    let documentButton = UIButton(type: .system)
+    documentButton.translatesAutoresizingMaskIntoConstraints = false
+    documentButton.setImage(UIImage(systemName: "paperclip"), for: .normal)
+    documentButton.tintColor = .white
+    documentButton.widthAnchor.constraint(equalToConstant: 35).isActive = true
+    documentButton.heightAnchor.constraint(equalToConstant: 35).isActive = true
+
+
+    messageTextView.backgroundColor = .white
+    messageTextView.layer.cornerRadius = 10
+    messageTextView.textColor = .lightGray
+    messageTextView.font = UIFont.systemFont(ofSize: 16)
+    messageTextView.text = "Введите текст сообщения"
+    messageTextView.translatesAutoresizingMaskIntoConstraints = false
+    messageTextView.autocapitalizationType = .words
+
+    messageTextView.isScrollEnabled = false
+
+    let stackView = UIStackView()
+    stackView.translatesAutoresizingMaskIntoConstraints = false
+    stackView.axis = .horizontal
+    stackView.alignment = .top
+    stackView.distribution = .fill
+    stackView.spacing = 8
+    stackView.addArrangedSubview(messageTextView)
+    stackView.addArrangedSubview(documentButton)
+    stackView.addArrangedSubview(sendButton)
+
+    messageView.addSubview(stackView)
+
+    let guide = view.safeAreaLayoutGuide
+
     let constraints = [
       tableView.topAnchor.constraint(equalTo: view.topAnchor),
       tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
       tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-      tableView.bottomAnchor.constraint(equalTo: messageView.topAnchor),
+      tableView.bottomAnchor.constraint(equalTo: messageView.topAnchor, constant: -16),
 
-      messageView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-      messageView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-      messageView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-      messageView.heightAnchor.constraint(equalToConstant: 60)
+      messageView.bottomAnchor.constraint(equalTo: guide.bottomAnchor),
+      messageView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
+      messageView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
+      messageView.heightAnchor.constraint(lessThanOrEqualToConstant: 250),
+
+      stackView.leadingAnchor.constraint(equalTo: messageView.leadingAnchor, constant: 16),
+      stackView.trailingAnchor.constraint(equalTo: messageView.trailingAnchor, constant: -16),
+      stackView.topAnchor.constraint(equalTo: messageView.topAnchor, constant: 16),
+      stackView.bottomAnchor.constraint(equalTo: messageView.bottomAnchor, constant: -16),
     ]
 
     NSLayoutConstraint.activate(constraints)
 
+  }
+
+}
+
+
+class CustomTextView: UITextView, UITextViewDelegate {
+
+  override init(frame: CGRect, textContainer: NSTextContainer?) {
+    super.init(frame: frame, textContainer: textContainer)
+
+    delegate = self
+  }
+
+  required init?(coder: NSCoder) {
+    fatalError("init(coder:) has not been implemented")
+  }
+
+  var maxHeight: CGFloat = 200
+
+  override var intrinsicContentSize: CGSize {
+    var size = super.intrinsicContentSize
+    if size.height > maxHeight {
+      size.height = maxHeight
+      isScrollEnabled = true
+    } else {
+      isScrollEnabled = false
+    }
+    return size
+  }
+
+  override var text: String! {
+    didSet {
+      invalidateIntrinsicContentSize()
+    }
+  }
+
+  func textViewDidBeginEditing(_ textView: UITextView) {
+    if textView.textColor == .lightGray {
+      textView.text = nil
+      textView.textColor = .white
+    }
+  }
+
+  func textViewDidEndEditing(_ textView: UITextView) {
+    if textView.text.isEmpty {
+      textView.text = "Введите текст сообшения"
+      textView.textColor = UIColor.lightGray
+    }
+  }
+
+  func textViewDidChange(_ textView: UITextView) {
+    textView.sizeToFit()
+    invalidateIntrinsicContentSize()
   }
 
 }
