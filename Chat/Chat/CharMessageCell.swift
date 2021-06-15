@@ -51,7 +51,7 @@ class ChatMessageCell: UITableViewCell {
     let constraints = [
       messageLabel.topAnchor.constraint(equalTo: topAnchor, constant: 16),
       messageLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -32),
-      messageLabel.widthAnchor.constraint(lessThanOrEqualTo: widthAnchor, multiplier: 3/5),
+//      messageLabel.widthAnchor.constraint(lessThanOrEqualTo: widthAnchor, multiplier: 3/5),
       
       bubbleBackgroundView.topAnchor.constraint(equalTo: messageLabel.topAnchor, constant: -16),
       bubbleBackgroundView.leadingAnchor.constraint(equalTo: messageLabel.leadingAnchor, constant: -16),
@@ -59,6 +59,17 @@ class ChatMessageCell: UITableViewCell {
       bubbleBackgroundView.trailingAnchor.constraint(equalTo: messageLabel.trailingAnchor, constant: 16),
     ]
     NSLayoutConstraint.activate(constraints)
+    
+    let constraint = NSLayoutConstraint(
+      item: messageLabel,
+      attribute: .width,
+      relatedBy: .lessThanOrEqual,
+      toItem: self,
+      attribute: .width,
+      multiplier: 3/5,
+      constant: 0)
+    constraint.priority = UILayoutPriority(999)
+    constraint.isActive = true
     
     leadingConstraint = messageLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 32)
     leadingConstraint.isActive = false

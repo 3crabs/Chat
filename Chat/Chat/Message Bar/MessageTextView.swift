@@ -9,7 +9,7 @@ import UIKit
 
 class MessageTextView: UITextView {
 
-  private var maxHeight: CGFloat = 200
+  private var maxHeight: CGFloat = 80
 
   override init(frame: CGRect, textContainer: NSTextContainer?) {
     super.init(frame: frame, textContainer: textContainer)
@@ -78,7 +78,7 @@ extension MessageTextView: UITextViewDelegate {
   }
 
   func textViewDidChange(_ textView: UITextView) {
-    textView.sizeToFit()
+//    textView.sizeToFit()
     invalidateIntrinsicContentSize()
   }
 }

@@ -9,12 +9,15 @@ import UIKit
 
 class InputMessageBar: UIView {
 
-  private let messageTextView = MessageTextView()
+  private let topBorderView = UIView()
+  let messageTextView = MessageTextView()
   private let stackView = UIStackView()
   private let sendButton = UIButton(type: .system)
   private let documentButton = UIButton(type: .system)
 
   private let widthConstant: CGFloat = 35.0
+  
+  
 
   override init(frame: CGRect) {
     super.init(frame: frame)
@@ -25,17 +28,11 @@ class InputMessageBar: UIView {
   required init?(coder: NSCoder) {
     fatalError("init(coder:) has not been implemented")
   }
-
-  private func setupShadow(
-    shadowColor: UIColor,
-    opacity: Float,
-    offset: CGSize,
-    radius: CGFloat
-  ) {
-    layer.shadowColor = shadowColor.cgColor
-    layer.shadowOpacity = opacity
-    layer.shadowOffset = offset
-    layer.shadowRadius = radius
+  
+  private func setupTopBorderView(_ borderView: UIView, borderColor: UIColor, width: CGFloat) {
+    borderView.translatesAutoresizingMaskIntoConstraints = false
+    borderView.backgroundColor = borderColor
+    borderView.heightAnchor.constraint(equalToConstant: width).isActive = true
   }
 
   private func setupButton(
@@ -64,21 +61,25 @@ class InputMessageBar: UIView {
 
   private func setup() {
     translatesAutoresizingMaskIntoConstraints = false
-    backgroundColor = .white
-    layer.cornerRadius = 10
+    backgroundColor = .clear
 
-    setupShadow(shadowColor: .black, opacity: 0.3, offset: .zero, radius: 10)
     setupButton(sendButton, image: UIImage(systemName: "paperplane"), tintColor: .systemOrange)
     setupButton(documentButton, image: UIImage(systemName: "paperclip"), tintColor: .systemOrange)
     setupStackView(stackView, subviews: [messageTextView, documentButton, sendButton])
-
+    setupTopBorderView(topBorderView, borderColor: .systemGray3, width: 0.5)
+    
+    addSubview(topBorderView)
     addSubview(stackView)
 
     let constraints = [
-      stackView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
-      stackView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
-      stackView.topAnchor.constraint(equalTo: topAnchor, constant: 16),
-      stackView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -16)
+      topBorderView.leadingAnchor.constraint(equalTo: leadingAnchor),
+      topBorderView.topAnchor.constraint(equalTo: topAnchor),
+      topBorderView.trailingAnchor.constraint(equalTo: trailingAnchor),
+      
+      stackView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 8),
+      stackView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -8),
+      stackView.topAnchor.constraint(equalTo: topAnchor, constant: 8),
+      stackView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -8)
     ]
 
     NSLayoutConstraint.activate(constraints)
