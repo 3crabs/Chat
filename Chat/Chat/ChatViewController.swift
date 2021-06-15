@@ -12,15 +12,12 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
 
   private let chatMessages = Data.chatMessages
 
+//  private let scrollView = ChatScrollView()
+
   private let tableView = UITableView()
   private let messageView = InputMessageBar()
 
-  override func loadView() {
-    super.loadView()
-
-    setupChatView()
-
-  }
+  let notificationCenter = NotificationCenter.default
 
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -30,14 +27,41 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
 
     view.backgroundColor = .systemGray5
 
-    tableView.register(ChatMessageCell.self, forCellReuseIdentifier: ChatMessageCell.cellId)
-    tableView.separatorStyle = .none
-    tableView.backgroundColor = .clear
-    tableView.layer.cornerRadius = 20
-    tableView.allowsSelection = false
+//    setupScollView()
+    setupChatView()
+    setupTableView()
 
-    tableView.delegate = self
-    tableView.dataSource = self
+    // Listen for keyboard events
+    notificationCenter.addObserver(self, selector: #selector(keyboardWillChangeFrame(_ :)), name: UIResponder.keyboardWillChangeFrameNotification, object: nil)
+    notificationCenter.addObserver(self, selector: #selector(keyboardWillShow(_ :)), name: UIResponder.keyboardWillShowNotification, object: nil)
+    notificationCenter.addObserver(self, selector: #selector(keyboardWillHide(_ :)), name: UIResponder.keyboardWillHideNotification, object: nil)
+  }
+
+  deinit {
+    notificationCenter.removeObserver(self, name: UIResponder.keyboardWillChangeFrameNotification, object: nil)
+    notificationCenter.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
+    notificationCenter.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
+  }
+
+  @objc private func keyboardWillChangeFrame(_ notification: Notification) {
+    
+  }
+
+  @objc private func keyboardWillShow(_ notification: Notification) {
+    if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
+      print("notification: Keyboard will show")
+      if self.view.frame.origin.y == 0{
+        self.view.frame.origin.y -= keyboardSize.height
+      }
+    }
+  }
+
+  @objc private func keyboardWillHide(_ notification: Notification) {
+    if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
+      if self.view.frame.origin.y != 0 {
+        self.view.frame.origin.y += keyboardSize.height
+      }
+    }
   }
 
   func numberOfSections(in tableView: UITableView) -> Int {
@@ -92,7 +116,7 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
       tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
       tableView.bottomAnchor.constraint(equalTo: messageView.topAnchor, constant: -16),
 
-      messageView.bottomAnchor.constraint(equalTo: guide.bottomAnchor),
+      messageView.bottomAnchor.constraint(equalTo: guide.bottomAnchor, constant: -16),
       messageView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
       messageView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
       messageView.heightAnchor.constraint(lessThanOrEqualToConstant: 250)
@@ -101,5 +125,31 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
     NSLayoutConstraint.activate(constraints)
 
   }
+
+  fileprivate func setupTableView() {
+    tableView.register(ChatMessageCell.self, forCellReuseIdentifier: ChatMessageCell.cellId)
+    tableView.separatorStyle = .none
+    tableView.allowsSelection = false
+
+    tableView.backgroundColor = .clear
+
+    tableView.delegate = self
+    tableView.dataSource = self
+  }
+
+//  fileprivate func setupScollView() {
+//
+//    view.addSubview(scrollView)
+//
+//    let constraints = [
+//      scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+//      scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+//      scrollView.topAnchor.constraint(equalTo: view.topAnchor),
+//      scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+//    ]
+//
+//    NSLayoutConstraint.activate(constraints)
+//
+//  }
 
 }

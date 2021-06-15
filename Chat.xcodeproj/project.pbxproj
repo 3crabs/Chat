@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A20374B82678B4D000EBA6BA /* ChatScollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20374B72678B4D000EBA6BA /* ChatScollView.swift */; };
 		A25D836726735CA1005BCB29 /* appstore.png in Resources */ = {isa = PBXBuildFile; fileRef = A25D836626735CA1005BCB29 /* appstore.png */; };
 		A25D836926735E5C005BCB29 /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = A25D836826735E5C005BCB29 /* Data.swift */; };
 		A25D836B26735E7E005BCB29 /* ChatMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A25D836A26735E7E005BCB29 /* ChatMessage.swift */; };
@@ -24,6 +25,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		A20374B72678B4D000EBA6BA /* ChatScollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatScollView.swift; sourceTree = "<group>"; };
 		A25D836626735CA1005BCB29 /* appstore.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = appstore.png; sourceTree = "<group>"; };
 		A25D836826735E5C005BCB29 /* Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
 		A25D836A26735E7E005BCB29 /* ChatMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatMessage.swift; sourceTree = "<group>"; };
@@ -76,10 +78,19 @@
 				A2ED8B4626721A2A00BDBB5A /* ChatViewController.swift */,
 				A2ED8B5626721DBE00BDBB5A /* CharMessageCell.swift */,
 				A25D836C26735EA9005BCB29 /* DateLabelHeader.swift */,
+				A2EA5BD42678ADBE0067AAF9 /* Message Bar */,
+				A20374B72678B4D000EBA6BA /* ChatScollView.swift */,
+			);
+			path = Chat;
+			sourceTree = "<group>";
+		};
+		A2EA5BD42678ADBE0067AAF9 /* Message Bar */ = {
+			isa = PBXGroup;
+			children = (
 				A2EA5BCF267893780067AAF9 /* InputMessageBar.swift */,
 				A2EA5BD1267893CE0067AAF9 /* MessageTextView.swift */,
 			);
-			path = Chat;
+			path = "Message Bar";
 			sourceTree = "<group>";
 		};
 		A2ED8B3626721A2A00BDBB5A = {
@@ -187,6 +198,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A2ED8B4726721A2A00BDBB5A /* ChatViewController.swift in Sources */,
+				A20374B82678B4D000EBA6BA /* ChatScollView.swift in Sources */,
 				A2EA5BD2267893CE0067AAF9 /* MessageTextView.swift in Sources */,
 				A2ED8B5726721DBE00BDBB5A /* CharMessageCell.swift in Sources */,
 				A2ED8B4326721A2A00BDBB5A /* AppDelegate.swift in Sources */,

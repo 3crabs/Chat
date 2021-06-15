@@ -57,9 +57,18 @@ extension MessageTextView: UITextViewDelegate {
   func textViewDidBeginEditing(_ textView: UITextView) {
     if textView.textColor == .lightGray {
       textView.text = nil
-      textView.textColor = .white
+      textView.textColor = .black
     }
   }
+
+  func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+    if(text == "\n") {
+      textView.resignFirstResponder()
+      return false
+    }
+    return true
+  }
+
 
   func textViewDidEndEditing(_ textView: UITextView) {
     if textView.text.isEmpty {
