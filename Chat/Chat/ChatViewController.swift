@@ -8,9 +8,19 @@
 
 import UIKit
 
-class ChatViewController: UITableViewController {
+class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
-  let chatMessages = Data.chatMessages
+  private let chatMessages = Data.chatMessages
+
+  private let tableView = UITableView()
+  private let messageView = UIView()
+
+  override func loadView() {
+    super.loadView()
+
+    setupChatView()
+
+  }
 
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -22,13 +32,16 @@ class ChatViewController: UITableViewController {
     tableView.separatorStyle = .none
     tableView.backgroundColor = .systemGray5
     tableView.allowsSelection = false
+
+    tableView.delegate = self
+    tableView.dataSource = self
   }
 
-  override func numberOfSections(in tableView: UITableView) -> Int {
+  func numberOfSections(in tableView: UITableView) -> Int {
     return chatMessages.count
   }
 
-  override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+  func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
     guard let firstMessageInSection = chatMessages[section].first else { return nil }
 
     let dateString = DateFormatter().localeDateFormatter(locale: "ru").string(from: firstMessageInSection.date)
@@ -45,21 +58,47 @@ class ChatViewController: UITableViewController {
     return containerView
   }
 
-  override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+  func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
     return 50
   }
 
-  override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+  func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     return chatMessages[section].count
   }
 
-  override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+  func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     guard let cell = tableView.dequeueReusableCell(withIdentifier: ChatMessageCell.cellId, for: indexPath) as? ChatMessageCell else {
       fatalError("Not found '\(ChatMessageCell.self)")
     }
     let chatMessage = chatMessages[indexPath.section][indexPath.row]
     cell.chatMessage = chatMessage
     return cell
+  }
+
+  fileprivate func setupChatView() {
+    tableView.translatesAutoresizingMaskIntoConstraints = false
+
+    messageView.translatesAutoresizingMaskIntoConstraints = false
+    messageView.backgroundColor = .systemBlue
+
+
+    view.addSubview(tableView)
+    view.addSubview(messageView)
+
+    let constraints = [
+      tableView.topAnchor.constraint(equalTo: view.topAnchor),
+      tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+      tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+      tableView.bottomAnchor.constraint(equalTo: messageView.topAnchor),
+
+      messageView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+      messageView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+      messageView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+      messageView.heightAnchor.constraint(equalToConstant: 60)
+    ]
+
+    NSLayoutConstraint.activate(constraints)
+
   }
 
 }
