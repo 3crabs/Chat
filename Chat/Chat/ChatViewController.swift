@@ -30,6 +30,8 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
     setupChatView()
     setupTableView()
 
+    hideKeyboard()
+
     // Listen for keyboard events
     notificationCenter.addObserver(self, selector: #selector(handleKeyBoard(_ :)), name: UIResponder.keyboardWillShowNotification, object: nil)
     notificationCenter.addObserver(self, selector: #selector(handleKeyBoard(_ :)), name: UIResponder.keyboardWillHideNotification, object: nil)
@@ -41,12 +43,12 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
   }
 
   @objc private func handleKeyBoard(_ notification: Notification) {
-    if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameBeginUserInfoKey]
+    if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey]
                             as? NSValue)?.cgRectValue {
       let isKeyboardShowing = notification.name == UIResponder.keyboardWillShowNotification
       bottomContainerConstraint.constant = isKeyboardShowing ? -keyboardSize.height : 0
 
-      UIView.animate(withDuration: 5, delay: 0, options: .curveEaseOut) {
+      UIView.animate(withDuration: 0, delay: 0, options: .curveEaseOut) {
         self.view.layoutIfNeeded()
       } completion: { _ in
 
@@ -91,10 +93,6 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
     cell.chatMessage = chatMessage
     return cell
   }
-  
-  func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-    messageView.messageTextView.endEditing(true)
-  }
 
   fileprivate func setupChatView() {
     tableView.translatesAutoresizingMaskIntoConstraints = false
@@ -124,8 +122,7 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
       tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
       tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
       tableView.bottomAnchor.constraint(equalTo: containerView.topAnchor),
-      
-//      containerView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+
       containerView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
       containerView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
 
@@ -133,7 +130,6 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
       messageView.trailingAnchor.constraint(equalTo: containerView.trailingAnchor),
       messageView.heightAnchor.constraint(lessThanOrEqualToConstant: 100),
       messageView.topAnchor.constraint(equalTo: containerView.topAnchor),
-//      messageView.bottomAnchor.constraint(equalTo: containerView.bottomAnchor)
     ]
 
     NSLayoutConstraint.activate(constraints)
@@ -144,7 +140,7 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
   fileprivate func setupTableView() {
     tableView.register(ChatMessageCell.self, forCellReuseIdentifier: ChatMessageCell.cellId)
     tableView.separatorStyle = .none
-//    tableView.allowsSelection = false
+    tableView.allowsSelection = false
     tableView.rowHeight = UITableView.automaticDimension
 
     tableView.backgroundColor = .clear
