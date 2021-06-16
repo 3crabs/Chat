@@ -23,7 +23,7 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
     super.viewDidLoad()
 
     navigationItem.title = "Сообщения"
-    navigationController?.navigationBar.prefersLargeTitles = false
+    navigationController?.navigationBar.prefersLargeTitles = true
 
     view.backgroundColor = .systemGray5
 
@@ -51,7 +51,10 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
       UIView.animate(withDuration: 0, delay: 0, options: .curveEaseOut) {
         self.view.layoutIfNeeded()
       } completion: { _ in
-
+        if !self.chatMessages.isEmpty {
+          let indextPath = IndexPath(row: Data.lastRow, section: Data.lastSection)
+          self.tableView.scrollToRow(at: indextPath, at: .bottom, animated: true)
+        }
       }
     }
   }

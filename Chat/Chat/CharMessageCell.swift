@@ -12,11 +12,11 @@ class ChatMessageCell: UITableViewCell {
 
   static let cellId = "\(ChatMessageCell.self)"
   
-  let messageLabel = UILabel()
-  let bubbleBackgroundView = UIView()
+  private let messageLabel = UILabel()
+  private let bubbleBackgroundView = UIView()
   
-  var leadingConstraint: NSLayoutConstraint!
-  var trailingConstraint: NSLayoutConstraint!
+  private var leadingConstraint: NSLayoutConstraint!
+  private var trailingConstraint: NSLayoutConstraint!
   
   var chatMessage: ChatMessage! {
     didSet {
@@ -51,7 +51,6 @@ class ChatMessageCell: UITableViewCell {
     let constraints = [
       messageLabel.topAnchor.constraint(equalTo: topAnchor, constant: 16),
       messageLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -32),
-//      messageLabel.widthAnchor.constraint(lessThanOrEqualTo: widthAnchor, multiplier: 3/5),
       
       bubbleBackgroundView.topAnchor.constraint(equalTo: messageLabel.topAnchor, constant: -16),
       bubbleBackgroundView.leadingAnchor.constraint(equalTo: messageLabel.leadingAnchor, constant: -16),

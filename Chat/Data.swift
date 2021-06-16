@@ -8,7 +8,18 @@
 import Foundation
 
 class Data {
-  static let chatMessages = [
+
+  static var lastSection: Int {
+    return !chatMessages.isEmpty ? chatMessages.count - 1 : 0
+  }
+  static var lastRow: Int {
+    guard let last = chatMessages.last else { return 0 }
+    return last.count - 1
+  }
+
+//  static let chatMessages = [[ChatMessage]]()
+
+  static let chatMessages: [[ChatMessage]] = [
     [
       ChatMessage(text: "Это мое первое сообщение", isIncoming: true, date: Date.dateFromCustomString(customString: "08/03/2018")),
       ChatMessage(text: "Я собираюсь отправить еще одно длинное сообщение, в котором будет перенос слов", isIncoming: true, date: Date.dateFromCustomString(customString: "08/03/2018")),

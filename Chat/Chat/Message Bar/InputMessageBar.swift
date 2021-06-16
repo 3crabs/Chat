@@ -10,18 +10,15 @@ import UIKit
 class InputMessageBar: UIView {
 
   private let topBorderView = UIView()
-  let messageTextView = MessageTextView()
+  private let messageTextView = MessageTextView()
   private let stackView = UIStackView()
   private let sendButton = UIButton(type: .system)
   private let documentButton = UIButton(type: .system)
 
   private let widthConstant: CGFloat = 35.0
-  
-  
 
   override init(frame: CGRect) {
     super.init(frame: frame)
-
     setup()
   }
 
