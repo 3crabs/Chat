@@ -10,12 +10,14 @@ import UIKit
 class InputMessageBar: UIView {
 
   private let topBorderView = UIView()
-  private let messageTextView = MessageTextView()
+  let messageTextView = MessageTextView()
   private let stackView = UIStackView()
   private let sendButton = UIButton(type: .system)
   private let documentButton = UIButton(type: .system)
 
   private let widthConstant: CGFloat = 35.0
+
+  var sendMessageAction: ((String?) -> Void)?
 
   override init(frame: CGRect) {
     super.init(frame: frame)
@@ -30,18 +32,6 @@ class InputMessageBar: UIView {
     borderView.translatesAutoresizingMaskIntoConstraints = false
     borderView.backgroundColor = borderColor
     borderView.heightAnchor.constraint(equalToConstant: width).isActive = true
-  }
-
-  private func setupButton(
-    _ button: UIButton,
-    image: UIImage?,
-    tintColor: UIColor
-  ) {
-    button.translatesAutoresizingMaskIntoConstraints = false
-    button.setImage(image, for: .normal)
-    button.tintColor = tintColor
-    button.widthAnchor.constraint(equalToConstant: widthConstant).isActive = true
-    button.heightAnchor.constraint(equalToConstant: widthConstant).isActive = true
   }
 
   private func setupStackView(_ stackView: UIStackView, subviews: [UIView]) {
@@ -60,8 +50,10 @@ class InputMessageBar: UIView {
     translatesAutoresizingMaskIntoConstraints = false
     backgroundColor = .clear
 
-    setupButton(sendButton, image: UIImage(systemName: "paperplane"), tintColor: .systemOrange)
-    setupButton(documentButton, image: UIImage(systemName: "paperclip"), tintColor: .systemOrange)
+    sendButton.setup(image: UIImage(systemName: "paperplane"), tintColor: .systemOrange, width: widthConstant)
+    sendButton.addTarget(self, action: #selector(sendMessage(_ :)), for: .touchUpInside)
+    documentButton.setup(image: UIImage(systemName: "paperclip"), tintColor: .systemOrange, width: widthConstant)
+
     setupStackView(stackView, subviews: [messageTextView, documentButton, sendButton])
     setupTopBorderView(topBorderView, borderColor: .systemGray3, width: 0.5)
     
@@ -80,5 +72,9 @@ class InputMessageBar: UIView {
     ]
 
     NSLayoutConstraint.activate(constraints)
+  }
+
+  @objc private func sendMessage(_ button: UIButton) {
+    sendMessageAction?(messageTextView.text)
   }
 }

@@ -9,28 +9,54 @@ import Foundation
 
 class Data {
 
-  static var lastSection: Int {
+  static var shared: Data = {
+    let instance = Data()
+    instance.grouppedMessages()
+    return instance
+  }()
+
+  private init() { }
+
+  var serverMessages: [ChatMessage] = []
+  var chatMessages = [[ChatMessage]]()
+
+  var lastSection: Int {
     return !chatMessages.isEmpty ? chatMessages.count - 1 : 0
   }
-  static var lastRow: Int {
+
+  var lastRow: Int {
     guard let last = chatMessages.last else { return 0 }
     return last.count - 1
   }
 
-//  static let chatMessages = [[ChatMessage]]()
+  func grouppedMessages() {
+    chatMessages.removeAll()
 
-  static let chatMessages: [[ChatMessage]] = [
-    [
-      ChatMessage(text: "Это мое первое сообщение", isIncoming: true, date: Date.dateFromCustomString(customString: "08/03/2018")),
-      ChatMessage(text: "Я собираюсь отправить еще одно длинное сообщение, в котором будет перенос слов", isIncoming: true, date: Date.dateFromCustomString(customString: "08/03/2018")),
-    ],
-    [
-      ChatMessage(text: "Я собираюсь отправить еще одно длинное сообщение с переносом по словам, я собираюсь отправить еще одно длинное сообщение с переносом по словам, я собираюсь отправить еще одно длинное сообщение с переносом по словам", isIncoming: false, date: Date.dateFromCustomString(customString: "09/15/2018")),
-      ChatMessage(text: "Эй, чувак, как дела?", isIncoming: false, date: Date()),
-      ChatMessage(text: "Это сообщение должно появиться слева с белым пузырем на фоне.", isIncoming: true, date: Date.dateFromCustomString(customString: "09/15/2018")),
-    ],
-    [
-      ChatMessage(text: "Сообщение третьего раздела", isIncoming: true, date: Date.dateFromCustomString(customString: "10/31/2018"))
-    ]
-  ]
+    let grouppedMessages = Dictionary(grouping: serverMessages) { (date) -> DateComponents in
+      let sort = Calendar.current.dateComponents([.day, .month, .year], from: date.date)
+      return sort
+    }
+
+    let sortedKeys = grouppedMessages.sorted {
+      Calendar.current.date(from: $0.key) ?? Date.distantFuture < Calendar.current.date(from: $1.key) ?? Date.distantFuture
+    }
+
+    sortedKeys.forEach { key, values in
+      let values = grouppedMessages[key]
+      chatMessages.append(values ?? [])
+    }
+  }
+
+
+  func addMessage(message: String, isIncoming: Bool) {
+    serverMessages.append(ChatMessage(text: message, isIncoming: isIncoming, date: Date()))
+    grouppedMessages()
+  }
+
+}
+
+extension Data: NSCopying {
+  func copy(with zone: NSZone? = nil) -> Any {
+    return self
+  }
 }

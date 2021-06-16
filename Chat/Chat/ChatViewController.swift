@@ -10,7 +10,7 @@ import UIKit
 
 class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
-  private let chatMessages = Data.chatMessages
+  private var chatMessages = Data.shared.chatMessages
 
   private let tableView = UITableView()
   private let messageView = InputMessageBar()
@@ -30,11 +30,19 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
     setupChatView()
     setupTableView()
 
-    hideKeyboard()
-
     // Listen for keyboard events
     notificationCenter.addObserver(self, selector: #selector(handleKeyBoard(_ :)), name: UIResponder.keyboardWillShowNotification, object: nil)
     notificationCenter.addObserver(self, selector: #selector(handleKeyBoard(_ :)), name: UIResponder.keyboardWillHideNotification, object: nil)
+
+    messageView.sendMessageAction = { [weak self] message in
+      guard let message = message else { return }
+      let isIncoming = Data.shared.serverMessages.count % 2 == 0
+      Data.shared.addMessage(message: message, isIncoming: isIncoming)
+      self?.chatMessages = Data.shared.chatMessages
+      self?.tableView.reloadData()
+      self?.tableView.scrollToRow(at: IndexPath(row: Data.shared.lastRow, section: Data.shared.lastSection), at: .bottom, animated: true)
+      self?.messageView.messageTextView.text = ""
+    }
   }
 
   deinit {
@@ -52,7 +60,7 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
         self.view.layoutIfNeeded()
       } completion: { _ in
         if !self.chatMessages.isEmpty {
-          let indextPath = IndexPath(row: Data.lastRow, section: Data.lastSection)
+          let indextPath = IndexPath(row: Data.shared.lastRow, section: Data.shared.lastSection)
           self.tableView.scrollToRow(at: indextPath, at: .bottom, animated: true)
         }
       }
@@ -96,6 +104,8 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
     cell.chatMessage = chatMessage
     return cell
   }
+
+
 
   fileprivate func setupChatView() {
     tableView.translatesAutoresizingMaskIntoConstraints = false
@@ -150,5 +160,12 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
 
     tableView.delegate = self
     tableView.dataSource = self
+
+    let tap = UITapGestureRecognizer(target: self, action: #selector(hideKeyboardTableView))
+    tableView.addGestureRecognizer(tap)
+  }
+
+  @objc func hideKeyboardTableView() {
+    messageView.messageTextView.resignFirstResponder()
   }
 }
