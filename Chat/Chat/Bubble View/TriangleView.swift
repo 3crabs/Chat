@@ -15,8 +15,8 @@ class TriangleView: UIView {
   override init(frame: CGRect) {
     super.init(frame: frame)
     translatesAutoresizingMaskIntoConstraints = false
-    backgroundColor = .clear
-
+    backgroundColor = .brown
+    
     widthAnchor.constraint(equalToConstant: 10).isActive = true
     heightAnchor.constraint(equalToConstant: 10).isActive = true
   }

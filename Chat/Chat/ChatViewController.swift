@@ -105,8 +105,6 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
     return cell
   }
 
-
-
   fileprivate func setupChatView() {
     tableView.translatesAutoresizingMaskIntoConstraints = false
 
