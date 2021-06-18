@@ -24,6 +24,8 @@
 		A2ED8B4C26721A2C00BDBB5A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A2ED8B4B26721A2C00BDBB5A /* Assets.xcassets */; };
 		A2ED8B4F26721A2C00BDBB5A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A2ED8B4D26721A2C00BDBB5A /* LaunchScreen.storyboard */; };
 		A2ED8B5726721DBE00BDBB5A /* CharMessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2ED8B5626721DBE00BDBB5A /* CharMessageCell.swift */; };
+		A2F59D7E267C7FAE00D9CA7D /* TestDrawViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2F59D7D267C7FAE00D9CA7D /* TestDrawViewController.swift */; };
+		A2F59D80267C912B00D9CA7D /* TriangleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2F59D7F267C912B00D9CA7D /* TriangleView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -46,6 +48,8 @@
 		A2ED8B4E26721A2C00BDBB5A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A2ED8B5026721A2C00BDBB5A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A2ED8B5626721DBE00BDBB5A /* CharMessageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharMessageCell.swift; sourceTree = "<group>"; };
+		A2F59D7D267C7FAE00D9CA7D /* TestDrawViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestDrawViewController.swift; sourceTree = "<group>"; };
+		A2F59D7F267C912B00D9CA7D /* TriangleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TriangleView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -86,6 +90,8 @@
 				A2ED8B5626721DBE00BDBB5A /* CharMessageCell.swift */,
 				A25D836C26735EA9005BCB29 /* DateLabelHeader.swift */,
 				A2EA5BD42678ADBE0067AAF9 /* Message Bar */,
+				A2F59D7D267C7FAE00D9CA7D /* TestDrawViewController.swift */,
+				A2F59D7F267C912B00D9CA7D /* TriangleView.swift */,
 			);
 			path = Chat;
 			sourceTree = "<group>";
@@ -207,11 +213,13 @@
 				A2ACE2B12679096800E1AB68 /* UIView+Extension.swift in Sources */,
 				A2B8DDE92679E34100F4F528 /* UIButton+Extension.swift in Sources */,
 				A2ED8B4726721A2A00BDBB5A /* ChatViewController.swift in Sources */,
+				A2F59D7E267C7FAE00D9CA7D /* TestDrawViewController.swift in Sources */,
 				A2EA5BD2267893CE0067AAF9 /* MessageTextView.swift in Sources */,
 				A2ED8B5726721DBE00BDBB5A /* CharMessageCell.swift in Sources */,
 				A2ED8B4326721A2A00BDBB5A /* AppDelegate.swift in Sources */,
 				A25D837126736250005BCB29 /* DateFormmater+Extension.swift in Sources */,
 				A25D836D26735EA9005BCB29 /* DateLabelHeader.swift in Sources */,
+				A2F59D80267C912B00D9CA7D /* TriangleView.swift in Sources */,
 				A25D836F2673623B005BCB29 /* Date+Extension.swift in Sources */,
 				A25D836B26735E7E005BCB29 /* ChatMessage.swift in Sources */,
 				A2EA5BD0267893780067AAF9 /* InputMessageBar.swift in Sources */,

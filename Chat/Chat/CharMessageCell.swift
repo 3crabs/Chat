@@ -14,13 +14,18 @@ class ChatMessageCell: UITableViewCell {
   
   private let messageLabel = UILabel()
   private let bubbleBackgroundView = UIView()
+  private let triangleView = TriangleView()
   
   private var leadingConstraint: NSLayoutConstraint!
   private var trailingConstraint: NSLayoutConstraint!
+
+  private var triangleLeadingConstraint: NSLayoutConstraint!
+  private var triangleTrailingConstraint: NSLayoutConstraint!
   
   var chatMessage: ChatMessage! {
     didSet {
       bubbleBackgroundView.backgroundColor = chatMessage.isIncoming ? .white : .systemOrange
+//      triangleView.isComming = chatMessage.isIncoming
       messageLabel.textColor = chatMessage.isIncoming ? .black : .white
       
       messageLabel.text = chatMessage.text
@@ -28,9 +33,17 @@ class ChatMessageCell: UITableViewCell {
       if chatMessage.isIncoming {
         leadingConstraint.isActive = true
         trailingConstraint.isActive = false
+
+        triangleLeadingConstraint.isActive = true
+        triangleTrailingConstraint.isActive = false
       } else {
         leadingConstraint.isActive = false
         trailingConstraint.isActive = true
+
+        triangleLeadingConstraint.isActive = false
+        triangleTrailingConstraint.isActive = true
+
+        triangleView.setNeedsDisplay()
       }
     }
   }
@@ -39,23 +52,28 @@ class ChatMessageCell: UITableViewCell {
     super.init(style: style, reuseIdentifier: reuseIdentifier)
     
     backgroundColor = .clear
-    bubbleBackgroundView.backgroundColor = .yellow
     bubbleBackgroundView.layer.cornerRadius = 12
     bubbleBackgroundView.translatesAutoresizingMaskIntoConstraints = false
     messageLabel.translatesAutoresizingMaskIntoConstraints = false
+    triangleView.translatesAutoresizingMaskIntoConstraints = false
+
     messageLabel.numberOfLines = 0
+    messageLabel.font = UIFont.systemFont(ofSize: 16)
     
     addSubview(bubbleBackgroundView)
+    addSubview(triangleView)
     addSubview(messageLabel)
 
     let constraints = [
       messageLabel.topAnchor.constraint(equalTo: topAnchor, constant: 16),
       messageLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -32),
       
-      bubbleBackgroundView.topAnchor.constraint(equalTo: messageLabel.topAnchor, constant: -16),
-      bubbleBackgroundView.leadingAnchor.constraint(equalTo: messageLabel.leadingAnchor, constant: -16),
-      bubbleBackgroundView.bottomAnchor.constraint(equalTo: messageLabel.bottomAnchor, constant: 16),
-      bubbleBackgroundView.trailingAnchor.constraint(equalTo: messageLabel.trailingAnchor, constant: 16),
+      bubbleBackgroundView.topAnchor.constraint(equalTo: messageLabel.topAnchor, constant: -8),
+      bubbleBackgroundView.leadingAnchor.constraint(equalTo: messageLabel.leadingAnchor, constant: -8),
+      bubbleBackgroundView.bottomAnchor.constraint(equalTo: messageLabel.bottomAnchor, constant: 8),
+      bubbleBackgroundView.trailingAnchor.constraint(equalTo: messageLabel.trailingAnchor, constant: 8),
+
+      triangleView.centerYAnchor.constraint(equalTo: bubbleBackgroundView.centerYAnchor)
     ]
     NSLayoutConstraint.activate(constraints)
     
@@ -69,11 +87,17 @@ class ChatMessageCell: UITableViewCell {
       constant: 0)
     constraint.priority = UILayoutPriority(999)
     constraint.isActive = true
-    
-    leadingConstraint = messageLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 32)
+
+    triangleTrailingConstraint = triangleView.leadingAnchor.constraint(equalTo: bubbleBackgroundView.trailingAnchor)
+    triangleTrailingConstraint.isActive = false
+
+    triangleLeadingConstraint = triangleView.trailingAnchor.constraint(equalTo: bubbleBackgroundView.leadingAnchor)
+    triangleLeadingConstraint.isActive = true
+
+    leadingConstraint = messageLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16)
     leadingConstraint.isActive = false
     
-    trailingConstraint = messageLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -32)
+    trailingConstraint = messageLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16)
     trailingConstraint.isActive = true
   }
   
