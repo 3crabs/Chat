@@ -47,12 +47,19 @@ class InputMessageBar: UIView {
   }
 
   private func setup() {
+    messageTextView.sendButtonEnabledAction = { [weak self] isEnabled in
+      self?.sendButton.isEnabled = isEnabled
+    }
+    
     translatesAutoresizingMaskIntoConstraints = false
     backgroundColor = .clear
 
     sendButton.setup(image: UIImage(systemName: "paperplane"), tintColor: .systemOrange, width: widthConstant)
+    sendButton.isEnabled = false
     sendButton.addTarget(self, action: #selector(sendMessage(_ :)), for: .touchUpInside)
+    
     documentButton.setup(image: UIImage(systemName: "paperclip"), tintColor: .systemOrange, width: widthConstant)
+    documentButton.isEnabled = false
 
     setupStackView(stackView, subviews: [messageTextView, documentButton, sendButton])
     setupTopBorderView(topBorderView, borderColor: .systemGray3, width: 0.5)

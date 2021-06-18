@@ -10,6 +10,8 @@ import UIKit
 class MessageTextView: UITextView {
 
   private var maxHeight: CGFloat = 80
+  
+  var sendButtonEnabledAction: ((Bool) -> Void)?
 
   override init(frame: CGRect, textContainer: NSTextContainer?) {
     super.init(frame: frame, textContainer: textContainer)
@@ -55,6 +57,8 @@ class MessageTextView: UITextView {
 
 extension MessageTextView: UITextViewDelegate {
   func textViewDidBeginEditing(_ textView: UITextView) {
+    checkEnabledSendButton(textView)
+    
     if textView.textColor == .lightGray {
       textView.text = nil
       textView.textColor = .black
@@ -68,9 +72,11 @@ extension MessageTextView: UITextViewDelegate {
     }
     return true
   }
-
-
+  
   func textViewDidEndEditing(_ textView: UITextView) {
+    
+    checkEnabledSendButton(textView)
+    
     if textView.text.isEmpty {
       textView.text = "Введите текст сообшения"
       textView.textColor = UIColor.lightGray
@@ -78,7 +84,16 @@ extension MessageTextView: UITextViewDelegate {
   }
 
   func textViewDidChange(_ textView: UITextView) {
-//    textView.sizeToFit()
+    checkEnabledSendButton(textView)
     invalidateIntrinsicContentSize()
+  }
+  
+  private func checkEnabledSendButton(_ textView: UITextView) {
+    let text = textView.text
+    if text == "Введите текст сообщения" || text == "" {
+      sendButtonEnabledAction?(false)
+    } else {
+      sendButtonEnabledAction?(true)
+    }
   }
 }
