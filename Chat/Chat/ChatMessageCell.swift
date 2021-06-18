@@ -34,9 +34,7 @@ class ChatMessageCell: UITableViewCell {
   override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
     super.init(style: style, reuseIdentifier: reuseIdentifier)
     
-    layer.borderWidth = 1
-    layer.borderColor = UIColor.systemTeal.cgColor
-    backgroundColor = .green
+    backgroundColor = .clear
     
     addSubview(bubbleView)
     

@@ -33,8 +33,6 @@ class MessageView: UIView {
   private func setup() {
     translatesAutoresizingMaskIntoConstraints = false
     layer.cornerRadius = 12
-    backgroundColor = .systemGray2
-    messageLabel.backgroundColor = .systemPink
     
     addSubview(messageLabel)
     

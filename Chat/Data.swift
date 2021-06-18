@@ -29,7 +29,7 @@ class Data {
     return last.count - 1
   }
 
-  func grouppedMessages() {
+  private func grouppedMessages() {
     chatMessages.removeAll()
 
     let grouppedMessages = Dictionary(grouping: serverMessages) { (date) -> DateComponents in

@@ -15,10 +15,15 @@ class TriangleView: UIView {
   override init(frame: CGRect) {
     super.init(frame: frame)
     translatesAutoresizingMaskIntoConstraints = false
-    backgroundColor = .brown
+    backgroundColor = .clear
     
-    widthAnchor.constraint(equalToConstant: 10).isActive = true
-    heightAnchor.constraint(equalToConstant: 10).isActive = true
+    let constraint = [
+      heightAnchor.constraint(equalToConstant: 10),
+      widthAnchor.constraint(equalToConstant: 10)
+    ]
+    
+    NSLayoutConstraint.activate(constraint)
+    
   }
 
   private func createTriangle() {

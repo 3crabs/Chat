@@ -9,15 +9,9 @@ import UIKit
 
 class BubbleView: UIView {
   
-  private let messageView: MessageView = {
-    let view = MessageView()
-    return view
-  }()
+  private let messageView = MessageView()
   
-  private let triangleView: TriangleView = {
-    let view = TriangleView()
-    return view
-  }()
+  private let triangleView = TriangleView()
   
   private var incomingConstraints: [NSLayoutConstraint]!
   private var comingConstraints: [NSLayoutConstraint]!
@@ -29,11 +23,11 @@ class BubbleView: UIView {
       messageView.backgroundColor = isIncoming ? .white : .systemOrange
       
       if isIncoming {
-        NSLayoutConstraint.activate(incomingConstraints)
         NSLayoutConstraint.deactivate(comingConstraints)
+        NSLayoutConstraint.activate(incomingConstraints)
       } else {
-        NSLayoutConstraint.activate(comingConstraints)
         NSLayoutConstraint.deactivate(incomingConstraints)
+        NSLayoutConstraint.activate(comingConstraints)
       }
       triangleView.setNeedsDisplay()
     }
@@ -53,7 +47,6 @@ class BubbleView: UIView {
   }
   
   private func setup() {
-    backgroundColor = .systemBlue
     translatesAutoresizingMaskIntoConstraints = false
     
     addSubview(messageView)
