@@ -15,6 +15,7 @@ class MessageView: UIView {
     label.numberOfLines = 0
     label.font = UIFont.systemFont(ofSize: 16)
     label.backgroundColor = .yellow
+    label.setContentCompressionResistancePriority(UILayoutPriority(1000), for: .horizontal)
 //    label.setContentHuggingPriority(UILayoutPriority(251), for: .horizontal)
 //    label.setContentHuggingPriority(UILayoutPriority(251), for: .vertical)
     return label
@@ -25,7 +26,7 @@ class MessageView: UIView {
     stackView.translatesAutoresizingMaskIntoConstraints = false
     stackView.axis = .horizontal
     stackView.alignment = .fill
-    stackView.distribution = .fillProportionally
+    stackView.distribution = .fill
     stackView.spacing = 0
     return stackView
   }()

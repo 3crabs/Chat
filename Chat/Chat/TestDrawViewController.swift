@@ -22,7 +22,7 @@ class TestDrawViewController: UIViewController {
     view.backgroundColor = .darkGray
     view.addSubview(bubbleView)
 
-//    bubbleView.widthAnchor.constraint(equalToConstant: 250).isActive = true
+//    bubbleView.widthAnchor.constraint(lessThanOrEqualToConstant: 250).isActive = true
     bubbleView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
     bubbleView.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
     
@@ -32,10 +32,10 @@ class TestDrawViewController: UIViewController {
       relatedBy: .lessThanOrEqual,
       toItem: view,
       attribute: .width,
-      multiplier: 1,
-      constant: 350)
-//    constraint.priority = UILayoutPriority(1000)
+      multiplier: 3/5,
+      constant: 0)
+    constraint.priority = UILayoutPriority(1000)
     constraint.isActive = true
-    
+//
   }
 }
