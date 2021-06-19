@@ -10,7 +10,6 @@ import UIKit
 class BubbleView: UIView {
   
   private let messageView = MessageView()
-  
   private let triangleView = TriangleView()
   
   private var incomingConstraints: [NSLayoutConstraint]!
@@ -49,8 +48,16 @@ class BubbleView: UIView {
   private func setup() {
     translatesAutoresizingMaskIntoConstraints = false
     
-    addSubview(messageView)
     addSubview(triangleView)
+    addSubview(messageView)
+    
+    let commonConstraints = [
+      messageView.topAnchor.constraint(equalTo: topAnchor),
+      messageView.bottomAnchor.constraint(equalTo: bottomAnchor),
+      messageView.centerYAnchor.constraint(equalTo: triangleView.centerYAnchor),
+    ]
+    
+    NSLayoutConstraint.activate(commonConstraints)
     
     comingConstraints = [
       messageView.leadingAnchor.constraint(equalTo: leadingAnchor),
@@ -63,14 +70,6 @@ class BubbleView: UIView {
       triangleView.trailingAnchor.constraint(equalTo: messageView.leadingAnchor),
       triangleView.leadingAnchor.constraint(equalTo: leadingAnchor)
     ]
-    
-    let commonConstraints = [
-      messageView.topAnchor.constraint(equalTo: topAnchor),
-      messageView.bottomAnchor.constraint(equalTo: bottomAnchor),
-      messageView.centerYAnchor.constraint(equalTo: triangleView.centerYAnchor),
-    ]
-    
-    NSLayoutConstraint.activate(commonConstraints)
   }
 }
 

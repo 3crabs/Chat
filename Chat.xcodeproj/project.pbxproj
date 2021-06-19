@@ -13,6 +13,7 @@
 		A25D836D26735EA9005BCB29 /* DateLabelHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = A25D836C26735EA9005BCB29 /* DateLabelHeader.swift */; };
 		A25D836F2673623B005BCB29 /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A25D836E2673623B005BCB29 /* Date+Extension.swift */; };
 		A25D837126736250005BCB29 /* DateFormmater+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A25D837026736250005BCB29 /* DateFormmater+Extension.swift */; };
+		A2619C5D267DF62E00FF1E9E /* TestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2619C5C267DF62E00FF1E9E /* TestViewController.swift */; };
 		A267F30E267CE13C0090DE03 /* BubbleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A267F30D267CE13C0090DE03 /* BubbleView.swift */; };
 		A267F310267CE9500090DE03 /* MessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A267F30F267CE9500090DE03 /* MessageView.swift */; };
 		A2ACE2B12679096800E1AB68 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2ACE2B02679096800E1AB68 /* UIView+Extension.swift */; };
@@ -37,6 +38,7 @@
 		A25D836C26735EA9005BCB29 /* DateLabelHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateLabelHeader.swift; sourceTree = "<group>"; };
 		A25D836E2673623B005BCB29 /* Date+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extension.swift"; sourceTree = "<group>"; };
 		A25D837026736250005BCB29 /* DateFormmater+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DateFormmater+Extension.swift"; sourceTree = "<group>"; };
+		A2619C5C267DF62E00FF1E9E /* TestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestViewController.swift; sourceTree = "<group>"; };
 		A267F30D267CE13C0090DE03 /* BubbleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BubbleView.swift; sourceTree = "<group>"; };
 		A267F30F267CE9500090DE03 /* MessageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageView.swift; sourceTree = "<group>"; };
 		A2ACE2B02679096800E1AB68 /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
@@ -96,6 +98,7 @@
 				A267F311267CE9840090DE03 /* Bubble View */,
 				A2EA5BD42678ADBE0067AAF9 /* Message Bar */,
 				A2F59D7D267C7FAE00D9CA7D /* TestDrawViewController.swift */,
+				A2619C5C267DF62E00FF1E9E /* TestViewController.swift */,
 			);
 			path = Chat;
 			sourceTree = "<group>";
@@ -239,6 +242,7 @@
 				A25D836F2673623B005BCB29 /* Date+Extension.swift in Sources */,
 				A25D836B26735E7E005BCB29 /* ChatMessage.swift in Sources */,
 				A2EA5BD0267893780067AAF9 /* InputMessageBar.swift in Sources */,
+				A2619C5D267DF62E00FF1E9E /* TestViewController.swift in Sources */,
 				A25D836926735E5C005BCB29 /* Data.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

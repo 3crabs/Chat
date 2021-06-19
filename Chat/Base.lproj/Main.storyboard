@@ -8,25 +8,101 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Chat View Controller-->
+        <!--Test View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ChatViewController" customModule="Chat" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="TestViewController" customModule="Chat" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="s7e-oA-KgC" userLabel="Bubble View">
+                                <rect key="frame" x="57" y="196.5" width="300" height="503"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KeA-yu-tec" userLabel="Triangle View">
+                                        <rect key="frame" x="0.0" y="241.5" width="20" height="20"/>
+                                        <color key="backgroundColor" systemColor="systemPinkColor"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="20" id="k3D-Od-Cot"/>
+                                            <constraint firstAttribute="width" constant="20" id="t5d-XS-3WC"/>
+                                        </constraints>
+                                    </view>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="t5O-Qi-kyc" userLabel="MessageView">
+                                        <rect key="frame" x="20" y="0.0" width="280" height="503"/>
+                                        <subviews>
+                                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" translatesAutoresizingMaskIntoConstraints="NO" id="Mh9-vh-NTH">
+                                                <rect key="frame" x="8" y="8" width="264" height="487"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MKX-l2-f0D">
+                                                        <rect key="frame" x="0.0" y="0.0" width="232" height="487"/>
+                                                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <mutableString key="text">йне. Lorem Ipsum является стандартной "рыбой" для текстов на латинице с начала XVI века. В то время некий безымянный печатник создал большую коллекцию размеров и форм шрифтов, используя Lorem Ipsum для распечатки образцов. Lorem Ipsum не только успешно пережил без заметных изменений пять веков, но и перешагнул в электронный дизайн. Его популяризации в новое время послужили публикация листов Letraset с образцами Lorem Ipsum в 60-х годах и, в более недавнее время, программы электронной вёрстки типа Aldus PageMaker, в шаблонах которых используется Lorem Ipsum.</mutableString>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="12:48" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HVY-f7-afg">
+                                                        <rect key="frame" x="232" y="0.0" width="32" height="487"/>
+                                                        <color key="backgroundColor" systemColor="systemGray6Color"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" constant="32" id="3JJ-Vw-8TT"/>
+                                                        </constraints>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                </subviews>
+                                            </stackView>
+                                        </subviews>
+                                        <color key="backgroundColor" systemColor="systemPurpleColor"/>
+                                        <constraints>
+                                            <constraint firstItem="Mh9-vh-NTH" firstAttribute="top" secondItem="t5O-Qi-kyc" secondAttribute="top" constant="8" id="Pok-jA-c5o"/>
+                                            <constraint firstAttribute="bottom" secondItem="Mh9-vh-NTH" secondAttribute="bottom" constant="8" id="aam-e0-UE9"/>
+                                            <constraint firstAttribute="trailing" secondItem="Mh9-vh-NTH" secondAttribute="trailing" constant="8" id="bE6-At-6ys"/>
+                                            <constraint firstItem="Mh9-vh-NTH" firstAttribute="leading" secondItem="t5O-Qi-kyc" secondAttribute="leading" constant="8" id="eNF-Kj-gdx"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemTealColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="t5O-Qi-kyc" secondAttribute="bottom" id="9WE-PC-i0M"/>
+                                    <constraint firstItem="KeA-yu-tec" firstAttribute="centerY" secondItem="t5O-Qi-kyc" secondAttribute="centerY" id="Q64-Cy-Fck"/>
+                                    <constraint firstItem="KeA-yu-tec" firstAttribute="leading" secondItem="s7e-oA-KgC" secondAttribute="leading" id="SU6-zM-RH8"/>
+                                    <constraint firstAttribute="trailing" secondItem="t5O-Qi-kyc" secondAttribute="trailing" id="YXd-6O-zbp"/>
+                                    <constraint firstItem="t5O-Qi-kyc" firstAttribute="top" secondItem="s7e-oA-KgC" secondAttribute="top" id="a10-c2-lC6"/>
+                                    <constraint firstItem="t5O-Qi-kyc" firstAttribute="leading" secondItem="KeA-yu-tec" secondAttribute="trailing" id="acQ-Dq-6zh"/>
+                                    <constraint firstAttribute="width" relation="lessThanOrEqual" constant="300" id="dEr-DO-poz"/>
+                                </constraints>
+                            </view>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="s7e-oA-KgC" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="kq0-CB-XIX"/>
+                            <constraint firstItem="s7e-oA-KgC" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="vr2-fI-ZBA"/>
+                        </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="139" y="138"/>
+            <point key="canvasLocation" x="137.68115942028987" y="137.94642857142856"/>
         </scene>
     </scenes>
     <resources>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemGray6Color">
+            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemPinkColor">
+            <color red="1" green="0.17647058823529413" blue="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemPurpleColor">
+            <color red="0.68627450980392157" green="0.32156862745098042" blue="0.87058823529411766" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemTealColor">
+            <color red="0.35294117647058826" green="0.78431372549019607" blue="0.98039215686274506" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
