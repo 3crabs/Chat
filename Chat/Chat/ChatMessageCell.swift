@@ -22,12 +22,13 @@ class ChatMessageCell: UITableViewCell {
       bubbleView.isIncoming = chatMessage.isIncoming
       bubbleView.setMessage(chatMessage.text)
       if chatMessage.isIncoming {
-        leadingConstraint.isActive = true
         trailingConstraint.isActive = false
+        leadingConstraint.isActive = true
       } else {
         leadingConstraint.isActive = false
         trailingConstraint.isActive = true
       }
+      layoutIfNeeded()
     }
   }
   
@@ -50,9 +51,9 @@ class ChatMessageCell: UITableViewCell {
       relatedBy: .lessThanOrEqual,
       toItem: self,
       attribute: .width,
-      multiplier: 3/5,
+      multiplier: 7/8,
       constant: 0)
-    constraint.priority = UILayoutPriority(950)
+    constraint.priority = UILayoutPriority(1000)
     constraint.isActive = true
     
     leadingConstraint = bubbleView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 8)
@@ -65,6 +66,4 @@ class ChatMessageCell: UITableViewCell {
   required init?(coder aDecoder: NSCoder) {
     fatalError("init(coder:) has not been implemented")
   }
-  
-  
 }

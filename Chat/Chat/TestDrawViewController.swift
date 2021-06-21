@@ -16,7 +16,7 @@ class TestDrawViewController: UIViewController {
     
     navigationItem.title = "Тестовые сообщения"
 
-    bubbleView.isIncoming = true
+    bubbleView.isIncoming = false
     bubbleView.setMessage("Рисую тестовое сообщение. Хочу посмотреть перенос строки, и вообще как выглядит это все вместе с хвостом")
     
     view.backgroundColor = .darkGray
@@ -32,10 +32,9 @@ class TestDrawViewController: UIViewController {
       relatedBy: .lessThanOrEqual,
       toItem: view,
       attribute: .width,
-      multiplier: 3/5,
+      multiplier: 3/4,
       constant: 0)
     constraint.priority = UILayoutPriority(1000)
     constraint.isActive = true
-//
   }
 }

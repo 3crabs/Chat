@@ -19,7 +19,7 @@ class BubbleView: UIView {
     didSet {
       triangleView.isIncoming = isIncoming
       messageView.messageLabel.textColor = isIncoming ? .black : .white
-      messageView.backgroundColor = isIncoming ? .white : .systemOrange
+      messageView.isIncoming = isIncoming// backgroundColor = isIncoming ? .white : .systemOrange
       
       if isIncoming {
         NSLayoutConstraint.deactivate(comingConstraints)

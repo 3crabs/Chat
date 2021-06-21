@@ -8,16 +8,29 @@
 import UIKit
 
 class MessageView: UIView {
+
+  var isIncoming: Bool! {
+    didSet {
+      backgroundColor = isIncoming ? .white : .systemOrange
+
+      if isIncoming {
+        stackView.addArrangedSubview(messageLabel)
+        stackView.addArrangedSubview(timeLabel)
+        timeLabel.textColor = .systemGray3
+      } else {
+        stackView.addArrangedSubview(timeLabel)
+        stackView.addArrangedSubview(messageLabel)
+        timeLabel.textColor = .systemGray6
+      }
+    }
+  }
   
   let messageLabel: UILabel = {
     let label = UILabel()
     label.translatesAutoresizingMaskIntoConstraints = false
     label.numberOfLines = 0
     label.font = UIFont.systemFont(ofSize: 16)
-    label.backgroundColor = .yellow
     label.setContentCompressionResistancePriority(UILayoutPriority(1000), for: .horizontal)
-//    label.setContentHuggingPriority(UILayoutPriority(251), for: .horizontal)
-//    label.setContentHuggingPriority(UILayoutPriority(251), for: .vertical)
     return label
   }()
   
@@ -27,16 +40,14 @@ class MessageView: UIView {
     stackView.axis = .horizontal
     stackView.alignment = .fill
     stackView.distribution = .fill
-    stackView.spacing = 0
+    stackView.spacing = 10
     return stackView
   }()
   
   private let timeLabel: UILabel = {
     let label = UILabel()
     label.translatesAutoresizingMaskIntoConstraints = false
-    label.font = UIFont.italicSystemFont(ofSize: 12)
-    label.backgroundColor = .systemBlue
-    label.textColor = .systemGray3
+    label.font = UIFont.italicSystemFont(ofSize: 8)
     label.text = "12:38"
     label.numberOfLines = 1
     return label
@@ -60,13 +71,10 @@ class MessageView: UIView {
     layer.cornerRadius = 12
     
     addSubview(stackView)
-    
-    stackView.addArrangedSubview(messageLabel)
-    stackView.addArrangedSubview(timeLabel)
-    
-//    addSubview(messageLabel)
+//    addSubview(messageLabel)ё
     
     let constraints = [
+      
       timeLabel.widthAnchor.constraint(equalToConstant: 32),
       topAnchor.constraint(equalTo: stackView.topAnchor, constant: -8),
       leadingAnchor.constraint(equalTo: stackView.leadingAnchor, constant: -8),
