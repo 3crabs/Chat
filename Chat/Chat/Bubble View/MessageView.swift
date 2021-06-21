@@ -16,7 +16,7 @@ class MessageView: UIView {
       if isIncoming {
         stackView.addArrangedSubview(messageLabel)
         stackView.addArrangedSubview(timeLabel)
-        timeLabel.textColor = .systemGray3
+        timeLabel.textColor = .systemGray
       } else {
         stackView.addArrangedSubview(timeLabel)
         stackView.addArrangedSubview(messageLabel)
