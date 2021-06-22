@@ -17,10 +17,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="s7e-oA-KgC" userLabel="Bubble View">
-                                <rect key="frame" x="57" y="196.5" width="300" height="503"/>
+                                <rect key="frame" x="57" y="-520" width="300" height="1936"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KeA-yu-tec" userLabel="Triangle View">
-                                        <rect key="frame" x="0.0" y="241.5" width="20" height="20"/>
+                                        <rect key="frame" x="0.0" y="958" width="20" height="20"/>
                                         <color key="backgroundColor" systemColor="systemPinkColor"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="20" id="k3D-Od-Cot"/>
@@ -28,13 +28,14 @@
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="t5O-Qi-kyc" userLabel="MessageView">
-                                        <rect key="frame" x="20" y="0.0" width="280" height="503"/>
+                                        <rect key="frame" x="20" y="0.0" width="280" height="1936"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Mh9-vh-NTH">
-                                                <rect key="frame" x="8" y="8" width="264" height="487"/>
+                                                <rect key="frame" x="8" y="8" width="264" height="1920"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MKX-l2-f0D">
                                                         <rect key="frame" x="0.0" y="0.0" width="232" height="487"/>
+                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                         <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <string key="text">йне. Lorem Ipsum является стандартной "рыбой" для текстов на латинице с начала XVI века. В то время некий безымянный печатник создал большую коллекцию размеров и форм шрифтов, используя Lorem Ipsum для распечатки образцов. Lorem Ipsum не только успешно пережил без заметных изменений пять веков, но и перешагнул в электронный дизайн. Его популяризации в новое время послужили публикация листов Letraset с образцами Lorem Ipsum в 60-х годах и, в более недавнее время, программы электронной вёрстки типа Aldus PageMaker, в шаблонах которых используется Lorem Ipsum.</string>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -42,7 +43,7 @@
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="12:48" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HVY-f7-afg">
-                                                        <rect key="frame" x="232" y="0.0" width="32" height="487"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="32" height="1920"/>
                                                         <color key="backgroundColor" systemColor="systemGray6Color"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" constant="32" id="3JJ-Vw-8TT"/>
@@ -51,7 +52,15 @@
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
+                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="IMG_0901" translatesAutoresizingMaskIntoConstraints="NO" id="ucr-3U-iMp">
+                                                        <rect key="frame" x="32" y="0.0" width="232" height="1920"/>
+                                                    </imageView>
                                                 </subviews>
+                                                <variation key="default">
+                                                    <mask key="subviews">
+                                                        <exclude reference="MKX-l2-f0D"/>
+                                                    </mask>
+                                                </variation>
                                             </stackView>
                                         </subviews>
                                         <color key="backgroundColor" systemColor="systemPurpleColor"/>
@@ -87,8 +96,48 @@
             </objects>
             <point key="canvasLocation" x="137.68115942028987" y="137.94642857142856"/>
         </scene>
+        <!--View Controller-->
+        <scene sceneID="kau-JH-YIo">
+            <objects>
+                <viewController id="oTs-fd-VWF" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="wMq-S8-Zmu">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MXX-oW-hEq">
+                                <rect key="frame" x="8" y="52" width="398" height="802"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="IMG_0901" translatesAutoresizingMaskIntoConstraints="NO" id="x9r-SB-g9Y">
+                                        <rect key="frame" x="4" y="4" width="390" height="794"/>
+                                    </imageView>
+                                </subviews>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="x9r-SB-g9Y" secondAttribute="bottom" constant="4" id="Nea-u8-big"/>
+                                    <constraint firstItem="x9r-SB-g9Y" firstAttribute="leading" secondItem="MXX-oW-hEq" secondAttribute="leading" constant="4" id="Tfr-LC-83E"/>
+                                    <constraint firstAttribute="trailing" secondItem="x9r-SB-g9Y" secondAttribute="trailing" constant="4" id="YaA-gV-lbe"/>
+                                    <constraint firstItem="x9r-SB-g9Y" firstAttribute="top" secondItem="MXX-oW-hEq" secondAttribute="top" constant="4" id="seN-JQ-W0O"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="BhY-eQ-iN2"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="MXX-oW-hEq" firstAttribute="centerX" secondItem="wMq-S8-Zmu" secondAttribute="centerX" id="Akz-6y-xOc"/>
+                            <constraint firstItem="BhY-eQ-iN2" firstAttribute="bottom" secondItem="MXX-oW-hEq" secondAttribute="bottom" constant="8" id="Nhn-Wf-TDc"/>
+                            <constraint firstItem="MXX-oW-hEq" firstAttribute="leading" secondItem="BhY-eQ-iN2" secondAttribute="leading" constant="8" id="gHt-51-6Qx"/>
+                            <constraint firstItem="BhY-eQ-iN2" firstAttribute="trailing" secondItem="MXX-oW-hEq" secondAttribute="trailing" constant="8" id="oYs-OY-xXH"/>
+                            <constraint firstItem="MXX-oW-hEq" firstAttribute="top" secondItem="BhY-eQ-iN2" secondAttribute="top" constant="8" id="xli-jJ-Z2G"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Euu-qp-7hA" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="933" y="138"/>
+        </scene>
     </scenes>
     <resources>
+        <image name="IMG_0901" width="1440" height="1920"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

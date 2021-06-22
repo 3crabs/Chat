@@ -16,8 +16,8 @@ class TestDrawViewController: UIViewController {
     
     navigationItem.title = "Тестовые сообщения"
 
-    bubbleView.isIncoming = false
-    bubbleView.setMessage("Рисую тестовое сообщение. Хочу посмотреть перенос строки, и вообще как выглядит это все вместе с хвостом")
+//    bubbleView. isIncoming = false
+//    bubbleView.setMessage("Рисую тестовое сообщение. Хочу посмотреть перенос строки, и вообще как выглядит это все вместе с хвостом")
     
     view.backgroundColor = .darkGray
     view.addSubview(bubbleView)

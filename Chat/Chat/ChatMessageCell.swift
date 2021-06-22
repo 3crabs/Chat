@@ -19,8 +19,9 @@ class ChatMessageCell: UITableViewCell {
 
   var chatMessage: ChatMessage! {
     didSet {
-      bubbleView.isIncoming = chatMessage.isIncoming
-      bubbleView.setMessage(chatMessage.text)
+      bubbleView.chatMessage = chatMessage
+//      bubbleView.isIncoming = chatMessage.isIncoming
+//      bubbleView.setMessage(chatMessage)
       if chatMessage.isIncoming {
         trailingConstraint.isActive = false
         leadingConstraint.isActive = true

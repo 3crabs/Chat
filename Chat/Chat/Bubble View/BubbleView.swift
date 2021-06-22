@@ -14,13 +14,13 @@ class BubbleView: UIView {
   
   private var incomingConstraints: [NSLayoutConstraint]!
   private var comingConstraints: [NSLayoutConstraint]!
-  
-  var isIncoming: Bool! {
+
+  var chatMessage: ChatMessage! {
     didSet {
-      triangleView.isIncoming = isIncoming
-      messageView.isIncoming = isIncoming
-      
-      if isIncoming {
+      triangleView.isIncoming = chatMessage.isIncoming
+      messageView.chatMessage = chatMessage
+//      messageView.isIncoming = chatMessage.isIncoming
+      if chatMessage.isIncoming {
         NSLayoutConstraint.deactivate(comingConstraints)
         NSLayoutConstraint.activate(incomingConstraints)
       } else {
@@ -30,7 +30,7 @@ class BubbleView: UIView {
       triangleView.setNeedsDisplay()
     }
   }
-  
+
   override init(frame: CGRect) {
     super.init(frame: frame)
     setup()
@@ -39,11 +39,7 @@ class BubbleView: UIView {
   required init?(coder: NSCoder) {
     fatalError("init(coder:) has not been implemented")
   }
-  
-  public func setMessage(_ message: String) {
-    messageView.setMessage(message)
-  }
-  
+    
   private func setup() {
     translatesAutoresizingMaskIntoConstraints = false
     

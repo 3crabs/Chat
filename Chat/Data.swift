@@ -48,8 +48,8 @@ class Data {
   }
 
 
-  func addMessage(message: String, isIncoming: Bool) {
-    serverMessages.append(ChatMessage(text: message, isIncoming: isIncoming, date: Date()))
+  func addMessage(message: ChatMessage) {
+    serverMessages.append(message)
     grouppedMessages()
   }
 

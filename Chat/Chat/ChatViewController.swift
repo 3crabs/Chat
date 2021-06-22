@@ -36,7 +36,7 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
     messageView.sendMessageAction = { [weak self] message in
       guard let message = message else { return }
       let isIncoming = Data.shared.serverMessages.count % 2 == 0
-      Data.shared.addMessage(message: message, isIncoming: isIncoming)
+      Data.shared.addMessage(message: ChatMessage(text: message, image: nil, isIncoming: isIncoming, date: Date(), type: .message))
       self?.chatMessages = Data.shared.chatMessages
       self?.tableView.reloadData()
       self?.tableView.scrollToRow(at: IndexPath(row: Data.shared.lastRow, section: Data.shared.lastSection), at: .bottom, animated: true)
@@ -45,8 +45,8 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
 
     messageView.documentButtonAction = { [weak self] in
       let alertVC = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-      alertVC.addAction(UIAlertAction(title: "Камера", style: .default, handler: self?.openPhotosOrVideos))
-      alertVC.addAction(UIAlertAction(title: "Фото или видео", style: .default, handler: self?.openPhotosOrVideos))
+      alertVC.addAction(UIAlertAction(title: "Камера", style: .default, handler: self?.openGallery))
+      alertVC.addAction(UIAlertAction(title: "Фото или видео", style: .default, handler: self?.openGallery))
       alertVC.addAction(UIAlertAction(title: "Файл", style: .default, handler: self?.openDocuments))
       alertVC.addAction(UIAlertAction(title: "Отмена", style: .cancel))
       self?.present(alertVC, animated: true)
@@ -57,8 +57,14 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
     print("Open Camera")
   }
 
-  private func openPhotosOrVideos(action: UIAlertAction) {
+  private func openGallery(action: UIAlertAction) {
     print("Open photos or videos")
+    let imagePickerController = UIImagePickerController()
+    imagePickerController.sourceType = .photoLibrary
+    imagePickerController.delegate = self
+    imagePickerController.mediaTypes = ["public.image", "public.movie"]
+    imagePickerController.videoQuality = .typeHigh
+    present(imagePickerController, animated: true)
   }
 
   private func openDocuments(action: UIAlertAction) {
@@ -185,5 +191,25 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
 
   @objc func hideKeyboardTableView() {
     messageView.messageTextView.resignFirstResponder()
+  }
+}
+
+extension ChatViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+  func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+    if let image = info[.originalImage] as? UIImage {
+      let isIncoming = Data.shared.serverMessages.count % 2 == 0
+      Data.shared.addMessage(message: ChatMessage(text: nil, image: image, isIncoming: isIncoming, date: Date(), type: .photo))
+      chatMessages = Data.shared.chatMessages
+      tableView.reloadData()
+      tableView.scrollToRow(at: IndexPath(row: Data.shared.lastRow, section: Data.shared.lastSection), at: .bottom, animated: true)
+    }
+    if let videoURL = info[.mediaURL] as? NSURL {
+      print(videoURL)
+    }
+    picker.dismiss(animated: true)
+  }
+
+  func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+    picker.dismiss(animated: true)
   }
 }
