@@ -30,7 +30,6 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
     setupChatView()
     setupTableView()
 
-    // Listen for keyboard events
     notificationCenter.addObserver(self, selector: #selector(handleKeyBoard(_ :)), name: UIResponder.keyboardWillShowNotification, object: nil)
     notificationCenter.addObserver(self, selector: #selector(handleKeyBoard(_ :)), name: UIResponder.keyboardWillHideNotification, object: nil)
 
@@ -43,6 +42,27 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
       self?.tableView.scrollToRow(at: IndexPath(row: Data.shared.lastRow, section: Data.shared.lastSection), at: .bottom, animated: true)
       self?.messageView.messageTextView.text = ""
     }
+
+    messageView.documentButtonAction = { [weak self] in
+      let alertVC = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+      alertVC.addAction(UIAlertAction(title: "Камера", style: .default, handler: self?.openPhotosOrVideos))
+      alertVC.addAction(UIAlertAction(title: "Фото или видео", style: .default, handler: self?.openPhotosOrVideos))
+      alertVC.addAction(UIAlertAction(title: "Файл", style: .default, handler: self?.openDocuments))
+      alertVC.addAction(UIAlertAction(title: "Отмена", style: .cancel))
+      self?.present(alertVC, animated: true)
+    }
+  }
+
+  private func openCamera(action: UIAlertAction) {
+    print("Open Camera")
+  }
+
+  private func openPhotosOrVideos(action: UIAlertAction) {
+    print("Open photos or videos")
+  }
+
+  private func openDocuments(action: UIAlertAction) {
+    print("Open documents")
   }
 
   deinit {

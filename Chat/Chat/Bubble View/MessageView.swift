@@ -11,8 +11,8 @@ class MessageView: UIView {
 
   var isIncoming: Bool! {
     didSet {
+      messageLabel.textColor = isIncoming ? .black : .white
       backgroundColor = isIncoming ? .white : .systemOrange
-
       if isIncoming {
         stackView.addArrangedSubview(messageLabel)
         stackView.addArrangedSubview(timeLabel)
@@ -25,7 +25,7 @@ class MessageView: UIView {
     }
   }
   
-  let messageLabel: UILabel = {
+  private let messageLabel: UILabel = {
     let label = UILabel()
     label.translatesAutoresizingMaskIntoConstraints = false
     label.numberOfLines = 0
@@ -71,18 +71,15 @@ class MessageView: UIView {
     layer.cornerRadius = 12
     
     addSubview(stackView)
-//    addSubview(messageLabel)ё
     
     let constraints = [
-      
       timeLabel.widthAnchor.constraint(equalToConstant: 32),
       topAnchor.constraint(equalTo: stackView.topAnchor, constant: -8),
       leadingAnchor.constraint(equalTo: stackView.leadingAnchor, constant: -8),
       bottomAnchor.constraint(equalTo: stackView.bottomAnchor, constant: 8),
       trailingAnchor.constraint(equalTo: stackView.trailingAnchor, constant: 8)
     ]
-    
-    
+
     NSLayoutConstraint.activate(constraints)
   }
 }

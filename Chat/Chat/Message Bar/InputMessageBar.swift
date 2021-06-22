@@ -18,6 +18,7 @@ class InputMessageBar: UIView {
   private let widthConstant: CGFloat = 35.0
 
   var sendMessageAction: ((String?) -> Void)?
+  var documentButtonAction: (() -> Void)?
 
   override init(frame: CGRect) {
     super.init(frame: frame)
@@ -59,7 +60,7 @@ class InputMessageBar: UIView {
     sendButton.addTarget(self, action: #selector(sendMessage(_ :)), for: .touchUpInside)
     
     documentButton.setup(image: UIImage(systemName: "paperclip"), tintColor: .systemOrange, width: widthConstant)
-    documentButton.isEnabled = false
+    documentButton.addTarget(self, action: #selector(openDocuments(_ :)), for: .touchUpInside)
 
     setupStackView(stackView, subviews: [messageTextView, documentButton, sendButton])
     setupTopBorderView(topBorderView, borderColor: .systemGray3, width: 0.5)
@@ -83,5 +84,9 @@ class InputMessageBar: UIView {
 
   @objc private func sendMessage(_ button: UIButton) {
     sendMessageAction?(messageTextView.text)
+  }
+
+  @objc private func openDocuments(_ button: UIButton) {
+    documentButtonAction?()
   }
 }
